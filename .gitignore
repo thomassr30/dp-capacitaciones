@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Duplicate folders and backup files
+/health-training-center/
+*.new
+*.bak
+*.backup
+
+# Documentation files (optional - uncomment if you want to keep them)
+# app.md
