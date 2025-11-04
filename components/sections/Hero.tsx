@@ -53,12 +53,16 @@ export default function Hero() {
         '-=0.4'
       );
 
-      // CTA buttons animation
-      tl.from(
+      // CTA buttons animation - usando fromTo para asegurar que terminen visibles
+      tl.fromTo(
         ctaRef.current?.children || [],
         {
           opacity: 0,
           y: 20,
+        },
+        {
+          opacity: 1,
+          y: 0,
           duration: 0.6,
           stagger: 0.15,
         },
@@ -234,8 +238,7 @@ export default function Hero() {
             ref={titleRef}
             className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight"
           >
-            Capacitaciones en Soporte Vital y Emergencias que elevan tu práctica
-            clínica
+            Capacitaciones en Soporte Vital y Emergencias
           </h1>
 
           {/* Subtitle */}
@@ -253,10 +256,10 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <Link
-              href="#calendario"
+              href="#cursos"
               className="group px-8 py-4 bg-accent hover:bg-accent/90 text-white rounded-lg font-semibold text-lg transition-all hover:scale-105 shadow-lg shadow-accent/50 w-full sm:w-auto"
             >
-              Ver calendario de cursos
+              Ver cursos
               <svg
                 className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
                 fill="none"
@@ -271,12 +274,18 @@ export default function Hero() {
                 />
               </svg>
             </Link>
-            <Link
-              href="#empresas"
+            <button
+              onClick={() => {
+                const phoneNumber = '56912345678'; // Reemplazar con el número real
+                const message = 'Hola, quisiera cotizar capacitaciones para mi empresa';
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                window.open(whatsappUrl, '_blank');
+              }}
               className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-lg font-semibold text-lg transition-all hover:scale-105 border border-white/30 w-full sm:w-auto"
             >
               Cotizar para empresas
-            </Link>
+            </button>
           </div>
         </div>
       </div>
