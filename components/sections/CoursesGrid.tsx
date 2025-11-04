@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -92,7 +92,7 @@ const courses: Course[] = [
   },
 ];
 
-const iconMap: { [key: string]: JSX.Element } = {
+const iconMap: { [key: string]: React.ReactElement } = {
   heart: (
     <path
       strokeLinecap="round"

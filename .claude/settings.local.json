@@ -5,7 +5,8 @@
       "Bash(npm install:*)",
       "Bash(npm run dev:*)",
       "Bash(Get-ChildItem -Path \"c:\\Users\\tsoto\\Documents\\dl\" -Directory)",
-      "Bash(Select-Object Name)"
+      "Bash(Select-Object Name)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []
