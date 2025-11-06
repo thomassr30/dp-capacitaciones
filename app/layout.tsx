@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,11 +12,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://centrocapacitacionsalud.cl"),
   title: {
     default: "DL Capacitaciones",
-    template: "%s | Centro de Capacitación en Salud",
+    template: "%s | DL Capacitaciones",
+  },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico' }
+    ],
   },
   description:
     "Capacitaciones certificadas en Soporte Vital Básico (SVB), Trauma, Primeros Auxilios y Emergencias. Instructores clínicos expertos, metodología hands-on y práctica. Más de 5,000 profesionales formados. Cursos presenciales y mixtos en Santiago, Valparaíso y Concepción.",
@@ -99,7 +111,8 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
+        style={{ fontFamily: 'var(--font-poppins), system-ui, sans-serif' }}
       >
         {children}
       </body>

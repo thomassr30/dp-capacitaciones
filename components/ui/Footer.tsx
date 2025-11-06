@@ -88,10 +88,58 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social & Legal */}
+          {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Síguenos</h3>
-            <div className="flex space-x-3 mb-6">
+            <h3 className="text-lg font-semibold mb-4">Contacto</h3>
+            <ul className="space-y-3">
+              <li className="flex items-start space-x-2 text-sm">
+                <svg
+                  className="w-5 h-5 text-primary mt-0.5 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                <span className="text-gray-400">
+                  RENACA NORTE 265 OF 510<br />
+                  RENACA BAJO, VIÑA DEL MAR
+                </span>
+              </li>
+              <li className="flex items-center space-x-2 text-sm">
+                <svg
+                  className="w-5 h-5 text-primary shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                <a
+                  href="mailto:dl.guzman2025@gmail.com"
+                  className="text-gray-400 hover:text-primary transition-colors"
+                >
+                  dl.guzman2025@gmail.com
+                </a>
+              </li>
+            </ul>
+            <div className="flex space-x-3 mt-6">
               <a
                 href="https://instagram.com/tu_usuario"
                 target="_blank"

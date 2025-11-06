@@ -16,57 +16,58 @@ interface GalleryImage {
   span?: string; // Para hacer algunas imágenes más grandes
 }
 
-// Imágenes de ejemplo relacionadas con capacitación en salud
+// Imágenes de capacitación en salud
 const galleryImages: GalleryImage[] = [
   {
     id: '1',
-    src: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
+    src: '/img1.webp',
     alt: 'Práctica de RCP en maniquí',
     category: 'Soporte Vital Básico',
     span: 'md:col-span-2 md:row-span-2',
   },
   {
     id: '2',
-    src: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80',
+    src: '/img2.webp',
     alt: 'Estudiantes en práctica de primeros auxilios',
     category: 'Primeros Auxilios',
   },
   {
     id: '3',
-    src: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80',
+    src: '/img3.webp',
     alt: 'Instructor enseñando técnicas de emergencia',
     category: 'Capacitación',
   },
   {
-    id: '4',
-    src: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80',
-    alt: 'Práctica con desfibrilador DEA',
-    category: 'Soporte Vital Básico',
-  },
-  {
-    id: '5',
-    src: 'https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?w=800&q=80',
+    id: '6',
+    src: '/img6.webp',
     alt: 'Equipo de estudiantes en simulación',
     category: 'Trauma',
-    span: 'md:col-span-2',
-  },
-  {
-    id: '6',
-    src: 'https://images.unsplash.com/photo-1581595220975-119360b2b1db?w=800&q=80',
-    alt: 'Práctica de inmovilización',
-    category: 'Inmovilización',
   },
   {
     id: '7',
-    src: 'https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=800&q=80',
-    alt: 'Certificación de estudiantes',
-    category: 'Certificaciones',
+    src: '/img7.webp',
+    alt: 'Control de hemorragia',
+    category: 'Control de Hemorragia',
+    span: 'md:col-span-2',
+  },
+  {
+    id: '5',
+    src: '/img5.webp',
+    alt: 'Práctica de canalización venosa',
+    category: 'Vías Venosas',
+    span: 'md:row-span-2',
   },
   {
     id: '8',
-    src: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80',
-    alt: 'Práctica de canalización venosa',
-    category: 'Vías Venosas',
+    src: '/img8.webp',
+    alt: 'Técnicas de inmovilización',
+    category: 'Inmovilización',
+  },
+  {
+    id: '9',
+    src: '/img9.webp',
+    alt: 'Práctica de inmovilización',
+    category: 'Inmovilización',
   },
 ];
 
@@ -80,18 +81,20 @@ export default function Gallery() {
     if (imagesRef.current.length === 0) return;
 
     const ctx = gsap.context(() => {
-      // Animación del título
+      // Animación del título con efecto más dramático
       gsap.fromTo(
         titleRef.current,
         {
           opacity: 0,
-          y: -30,
+          y: -50,
+          scale: 0.8,
         },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
+          scale: 1,
+          duration: 1,
+          ease: 'elastic.out(1, 0.6)',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 80%',
@@ -99,31 +102,45 @@ export default function Gallery() {
         }
       );
 
-      // Animación escalonada de las imágenes
+      // Animación escalonada más llamativa con rotación y escala
       gsap.fromTo(
         imagesRef.current,
         {
           opacity: 0,
-          scale: 0.9,
-          y: 30,
+          scale: 0.7,
+          y: 60,
+          rotation: -5,
         },
         {
           opacity: 1,
           scale: 1,
           y: 0,
-          duration: 0.8,
+          rotation: 0,
+          duration: 1.2,
           stagger: {
-            amount: 0.6,
-            from: 'start',
+            amount: 0.8,
+            from: 'random',
             ease: 'power2.out',
           },
-          ease: 'back.out(1.2)',
+          ease: 'elastic.out(1, 0.5)',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 70%',
           },
         }
       );
+
+      // Animación continua de flotación para las imágenes
+      imagesRef.current.forEach((img, index) => {
+        gsap.to(img, {
+          y: index % 2 === 0 ? -10 : 10,
+          duration: 2 + (index * 0.2),
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: index * 0.1,
+        });
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -178,8 +195,8 @@ export default function Gallery() {
           </p>
         </div>
 
-        {/* Gallery Grid - Masonry Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {/* Gallery Grid - Dynamic Masonry Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[280px] gap-6 max-w-6xl mx-auto">
           {galleryImages.map((image) => (
             <div
               key={image.id}
@@ -189,16 +206,19 @@ export default function Gallery() {
               }`}
             >
               {/* Image */}
-              <div className="aspect-square overflow-hidden bg-gray-200">
+              <div className="w-full h-full overflow-hidden bg-gray-200 relative">
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
               </div>
 
-              {/* Overlay with category */}
-              <div className="absolute inset-0 bg-gradient-to-t from-hero-dark/90 via-hero-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+              {/* Dark overlay - Always visible with transparency */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/10 group-hover:from-primary/80 group-hover:via-primary/40 group-hover:to-transparent transition-all duration-500"></div>
+
+              {/* Overlay with category - Shows on hover */}
+              <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
                 <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   <p className="text-white font-semibold text-lg mb-1">
                     {image.category}

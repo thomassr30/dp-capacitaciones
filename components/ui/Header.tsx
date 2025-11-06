@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,23 +26,20 @@ export default function Header() {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <svg
-                className="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="relative h-14 w-14 shrink-0 transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/logo.png"
+                alt="DL Capacitaciones Logo"
+                fill
+                className="object-contain"
+                priority
+                quality={100}
+              />
             </div>
-            <span className={`text-xl font-bold ${scrolled ? 'text-foreground' : 'text-white'}`}>
+            <span className={`text-xl font-semibold tracking-wide transition-colors ${
+              scrolled ? 'text-gray-700' : 'text-white/95'
+            }`}>
               Capacitaciones
             </span>
           </Link>
