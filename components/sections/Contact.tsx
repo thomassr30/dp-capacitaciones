@@ -28,7 +28,7 @@ export default function Contact() {
     e.preventDefault();
 
     // Construir el mensaje de WhatsApp con los datos del formulario
-    const phoneNumber = '56991477863';
+    const phoneNumber = '56991487863';
 
     // Formatear datos antes de enviar
     const formattedName = capitalizeWords(formData.name.trim());

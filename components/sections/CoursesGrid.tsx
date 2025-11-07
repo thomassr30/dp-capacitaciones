@@ -296,7 +296,7 @@ export default function CoursesGrid() {
               {/* CTA Button */}
               <button
                 onClick={() => {
-                  const phoneNumber = '56991477863';
+                  const phoneNumber = '56991487863';
                   const message = `Hola, quisiera saber más sobre el curso de ${course.name}`;
                   const encodedMessage = encodeURIComponent(message);
                   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
