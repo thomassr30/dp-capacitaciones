@@ -19,19 +19,19 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://centrocapacitacionsalud.cl"),
+  metadataBase: new URL("https://www.dlcapacitaciones.cl/"),
   title: {
     default: "DL Capacitaciones",
     template: "%s | DL Capacitaciones",
   },
   icons: {
     icon: [
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico' }
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
     ],
   },
   description:
-    "Capacitaciones certificadas en Soporte Vital Básico (SVB), Trauma, Primeros Auxilios y Emergencias. Instructores clínicos expertos, metodología hands-on y práctica. Más de 5,000 profesionales formados. Cursos presenciales y mixtos en Santiago, Valparaíso y Concepción.",
+    "Capacitaciones de Soporte Vital Básico (SVB), Trauma, Primeros Auxilios y Emergencias. Instructores expertos, metodología hands-on y práctica. Cursos presenciales.",
   keywords: [
     "capacitación en salud",
     "soporte vital básico",
@@ -54,9 +54,9 @@ export const metadata: Metadata = {
     "instructor clínico",
     "certificación profesional salud",
   ],
-  authors: [{ name: "Centro de Capacitación en Salud" }],
-  creator: "Centro de Capacitación en Salud",
-  publisher: "Centro de Capacitación en Salud",
+  authors: [{ name: "DL Capacitaciones" }],
+  creator: "DL Capacitaciones",
+  publisher: "DL Capacitaciones",
   robots: {
     index: true,
     follow: true,
@@ -71,35 +71,34 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_CL",
-    url: "https://centrocapacitacionsalud.cl",
-    siteName: "Centro de Capacitación en Salud",
-    title:
-      "Centro de Capacitación en Salud | Cursos Certificados SVB, Trauma y Emergencias",
+    url: "https://www.dlcapacitaciones.cl/",
+    site_name: "DL Capacitaciones",
+    siteName: "DL Capacitaciones",
+    title: "DL Capacitaciones | Cursos Certificados SVB, Trauma y Emergencias",
     description:
-      "Capacitaciones certificadas en Soporte Vital Básico (SVB), Trauma, Primeros Auxilios y Emergencias. Más de 5,000 profesionales formados. Cursos presenciales y mixtos.",
+      "Capacitaciones de Soporte Vital Básico (SVB), Trauma, Primeros Auxilios y Emergencias. Cursos presenciales.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Centro de Capacitación en Salud - Cursos Certificados",
+        alt: "DL Capacitaciones | Cursos Certificados",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Centro de Capacitación en Salud | Cursos Certificados SVB, Trauma y Emergencias",
+    title: "DL Capacitaciones | Cursos Certificados SVB, Trauma y Emergencias",
     description:
-      "Capacitaciones certificadas en Soporte Vital Básico, Trauma, Primeros Auxilios y Emergencias. +5,000 profesionales formados.",
+      "Capacitaciones de Soporte Vital Básico, Trauma, Primeros Auxilios y Emergencias. +5,000 profesionales formados.",
     images: ["/og-image.jpg"],
-    creator: "@centrocapacitacion",
+    creator: "@dlcapacitaciones",
   },
   verification: {
     google: "google-site-verification-code-here",
   },
   alternates: {
-    canonical: "https://centrocapacitacionsalud.cl",
+    canonical: "https://www.dlcapacitaciones.cl",
   },
 };
 

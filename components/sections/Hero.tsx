@@ -276,7 +276,7 @@ export default function Hero() {
             </Link>
             <button
               onClick={() => {
-                const phoneNumber = '56912345678'; // Reemplazar con el número real
+                const phoneNumber = '56991477863';
                 const message = 'Hola, quisiera cotizar capacitaciones para mi empresa';
                 const encodedMessage = encodeURIComponent(message);
                 const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
