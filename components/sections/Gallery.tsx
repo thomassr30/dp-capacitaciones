@@ -53,8 +53,8 @@ const galleryImages: GalleryImage[] = [
   {
     id: '5',
     src: '/img5.webp',
-    alt: 'Práctica de canalización venosa',
-    category: 'Vías Venosas',
+    alt: 'Práctica de parche 3 puntas hemotórax',
+    category: 'Trauma',
     span: 'md:row-span-2',
   },
   {

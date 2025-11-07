@@ -27,12 +27,12 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative h-14 w-14 shrink-0 transition-transform duration-300 group-hover:scale-105">
+            <div className="relative h-14 w-14 shrink-0 transition-transform duration-300 group-hover:scale-105 bg-white rounded-lg p-1.5 shadow-md">
               <Image
                 src="/logo.png"
                 alt="DL Capacitaciones Logo"
                 fill
-                className="object-contain"
+                className="object-contain p-0.5"
                 priority
                 quality={100}
               />

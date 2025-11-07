@@ -1,97 +1,77 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-interface Company {
+interface Instructor {
   id: string;
   name: string;
-  logo: string;
+  title: string;
+  credentials: string[];
+  image: string;
 }
 
-// Lista completa de empresas que han confiado en las capacitaciones
-const allCompanies: Company[] = [
+// Lista de instructores
+const instructors: Instructor[] = [
   {
     id: '1',
-    name: 'Hospital Clínico Universidad de Chile',
-    logo: 'https://via.placeholder.com/200x100/0EA5E9/FFFFFF?text=Hospital+UC',
+    name: 'Instructor Principal',
+    title: 'Especialista Certificado en Soporte Vital y Emergencias',
+    credentials: [
+      'Instructor Basic Life Support - American Heart Association (AHA)',
+      'Instructor NAEMT - PHTLS, TECC, AHDR',
+      'Instructor ECSI - BLS, WFA, WAFA',
+      'Combat Casualty Care Course - Armada de Chile',
+      'Sistema de Gestión de Calidad ISO 9001',
+    ],
+    image: '/instructor1.webp',
   },
   {
     id: '2',
-    name: 'Clínica Las Condes',
-    logo: 'https://via.placeholder.com/200x100/0EA5E9/FFFFFF?text=Clinica+LC',
-  },
-  {
-    id: '3',
-    name: 'Cruz Roja Chilena',
-    logo: 'https://via.placeholder.com/200x100/0EA5E9/FFFFFF?text=Cruz+Roja',
-  },
-  {
-    id: '4',
-    name: 'Mutual de Seguridad',
-    logo: 'https://via.placeholder.com/200x100/0EA5E9/FFFFFF?text=Mutual',
-  },
-  {
-    id: '5',
-    name: 'ACHS',
-    logo: 'https://via.placeholder.com/200x100/0EA5E9/FFFFFF?text=ACHS',
-  },
-  {
-    id: '6',
-    name: 'IST',
-    logo: 'https://via.placeholder.com/200x100/0EA5E9/FFFFFF?text=IST',
-  },
-  {
-    id: '7',
-    name: 'Bomberos de Chile',
-    logo: 'https://via.placeholder.com/200x100/0EA5E9/FFFFFF?text=Bomberos',
-  },
-  {
-    id: '8',
-    name: 'Minera Escondida',
-    logo: 'https://via.placeholder.com/200x100/0EA5E9/FFFFFF?text=Minera',
+    name: 'Instructor Certificado',
+    title: 'Especialista en Emergencias y Rescate',
+    credentials: [
+      'Instructor RCP',
+      'Control de Hemorragia',
+      'Uso de Equipos DEA',
+      'Primeros Auxilios',
+      'Instructor GRIMP Nivel 3',
+      'Instructor Rescate en Mina Subterránea',
+    ],
+    image: '/instructor2.webp',
   },
 ];
-
-// Función para seleccionar 4 empresas aleatorias
-function getRandomCompanies(companies: Company[], count: number): Company[] {
-  const shuffled = [...companies].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, count);
-}
 
 export default function Companies() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const logosRef = useRef<HTMLDivElement[]>([]);
-  const [companies, setCompanies] = useState<Company[]>([]);
-
-  // Seleccionar 4 empresas aleatorias al montar el componente
-  useEffect(() => {
-    setCompanies(getRandomCompanies(allCompanies, 4));
-  }, []);
+  const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (logosRef.current.length === 0) return;
+    if (cardsRef.current.length === 0) return;
 
     const ctx = gsap.context(() => {
-      // Animación del título
+      // Animación del título con efecto más dramático
       gsap.fromTo(
         titleRef.current,
         {
           opacity: 0,
-          y: -30,
+          y: -60,
+          scale: 0.8,
         },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
+          scale: 1,
+          duration: 1,
+          ease: 'elastic.out(1, 0.6)',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 80%',
@@ -99,63 +79,67 @@ export default function Companies() {
         }
       );
 
-      // Animación de los logos con stagger
-      gsap.fromTo(
-        logosRef.current,
-        {
-          opacity: 0,
-          scale: 0.8,
-          y: 20,
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'back.out(1.2)',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 70%',
+      // Animación de las tarjetas con efecto flip y entrada lateral
+      cardsRef.current.forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            x: index === 0 ? -100 : 100,
+            rotationY: index === 0 ? -90 : 90,
+            scale: 0.7,
           },
-        }
-      );
+          {
+            opacity: 1,
+            x: 0,
+            rotationY: 0,
+            scale: 1,
+            duration: 1.2,
+            delay: index * 0.3,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 70%',
+            },
+          }
+        );
+      });
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [companies]);
+  }, []);
 
   const addToRefs = (el: HTMLDivElement) => {
-    if (el && !logosRef.current.includes(el)) {
-      logosRef.current.push(el);
+    if (el && !cardsRef.current.includes(el)) {
+      cardsRef.current.push(el);
     }
   };
 
   return (
     <section
-      id="empresas"
+      id="instructores"
       ref={sectionRef}
-      className="py-20 bg-white relative overflow-hidden"
+      className="py-20 bg-gradient-to-br from-background via-white to-primary/5 relative overflow-hidden"
     >
-      {/* Background Pattern */}
+      {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern
-              id="companies-grid"
-              width="50"
-              height="50"
+              id="instructors-grid"
+              width="60"
+              height="60"
               patternUnits="userSpaceOnUse"
             >
               <path
-                d="M 50 0 L 0 0 0 50"
+                d="M 60 0 L 0 0 0 60"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1"
               />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#companies-grid)" />
+          <rect width="100%" height="100%" fill="url(#instructors-grid)" />
         </svg>
       </div>
 
@@ -166,27 +150,80 @@ export default function Companies() {
             ref={titleRef}
             className="text-4xl sm:text-5xl font-bold text-foreground mb-4"
           >
-            Confían en Nosotros
+            Nuestros Instructores
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Empresas e instituciones que han capacitado a sus equipos con
-            nosotros
+            Profesionales certificados con amplia experiencia en capacitación y atención de emergencias
           </p>
         </div>
 
-        {/* Companies Grid - Solo 4 empresas aleatorias */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center max-w-5xl mx-auto">
-          {companies.map((company) => (
+        {/* Instructors Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          {instructors.map((instructor, index) => (
             <div
-              key={company.id}
+              key={instructor.id}
               ref={addToRefs}
-              className="group bg-background rounded-xl p-6 flex items-center justify-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 aspect-video"
+              className="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 transition-shadow duration-300 hover:shadow-xl"
+              style={{ perspective: '1000px' }}
             >
-              <img
-                src={company.logo}
-                alt={company.name}
-                className="w-full h-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
-              />
+              <div className="p-8">
+                {/* Circular Image */}
+                <div className="relative w-64 h-64 mx-auto mb-6">
+                  <div className="absolute inset-0 rounded-full overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 ring-4 ring-primary/20 shadow-xl">
+                    <Image
+                      src={instructor.image}
+                      alt={instructor.name}
+                      fill
+                      className="object-cover object-center"
+                      quality={100}
+                    />
+                  </div>
+                  {/* Badge */}
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-2 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
+                    Instructor Certificado
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-foreground mb-2">
+                    {instructor.name}
+                  </h3>
+                  <p className="text-primary font-semibold text-lg">
+                    {instructor.title}
+                  </p>
+                </div>
+
+                {/* Credentials */}
+                <div className="space-y-3">
+                  <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3 text-center">
+                    Credenciales
+                  </h4>
+                  <ul className="space-y-3">
+                    {instructor.credentials.map((credential, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-start space-x-3 text-gray-700"
+                      >
+                        <div className="shrink-0 w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center mt-0.5">
+                          <svg
+                            className="w-4 h-4 text-accent"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-sm leading-relaxed">{credential}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           ))}
         </div>

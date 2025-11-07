@@ -9,11 +9,6 @@ const faqs = [
       'Los requisitos varían según el curso. Para cursos básicos como SVB y Primeros Auxilios, no se requiere experiencia previa. Para cursos avanzados como VVP, se requiere ser profesional o técnico de la salud.',
   },
   {
-    question: '¿Cuánto dura la certificación?',
-    answer:
-      'Las certificaciones tienen una vigencia de 2 años. Recomendamos renovar con cursos de actualización antes del vencimiento para mantener tus competencias actualizadas.',
-  },
-  {
     question: '¿Qué incluye el curso?',
     answer:
       'Todos nuestros cursos incluyen: material teórico descargable, práctica con simuladores y maniquíes, evaluación teórico-práctica, certificado digital y físico, y acceso a contenido de repaso por 6 meses.',
@@ -37,11 +32,6 @@ const faqs = [
     question: '¿Tienen política de devolución?',
     answer:
       'Ofrecemos devolución del 100% si cancelas con más de 7 días de anticipación. Entre 7 y 3 días: 50% de devolución. Menos de 3 días: no hay devolución, pero puedes reprogramar.',
-  },
-  {
-    question: '¿Los cursos son reconocidos oficialmente?',
-    answer:
-      'Sí, nuestros programas están alineados a guías internacionales y certificados por entidades reconocidas. Las certificaciones son válidas para acreditación profesional y auditorías institucionales.',
   },
 ];
 
