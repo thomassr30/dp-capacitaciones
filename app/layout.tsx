@@ -72,7 +72,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CL",
     url: "https://www.dlcapacitaciones.cl/",
-    site_name: "DL Capacitaciones",
     siteName: "DL Capacitaciones",
     title: "DL Capacitaciones | Cursos Certificados SVB, Trauma y Emergencias",
     description:
