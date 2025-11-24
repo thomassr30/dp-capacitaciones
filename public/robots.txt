@@ -6,4 +6,4 @@ Allow: /
 # Disallow: /admin/
 
 # Sitemap location
-Sitemap: https://centrocapacitacionsalud.cl/sitemap.xml
+Sitemap: https://www.dlcapacitaciones.cl/sitemap.xml

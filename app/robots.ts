@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://centrocapacitacionsalud.cl/sitemap.xml',
+    sitemap: 'https://www.dlcapacitaciones.cl/sitemap.xml',
   }
 }
