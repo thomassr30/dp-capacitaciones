@@ -46,6 +46,23 @@ const instructors: Instructor[] = [
     ],
     image: "/instructor2.webp",
   },
+  {
+    id: "3",
+    name: "Instructora",
+    title: "Técnico de Nivel Superior en Enfermería y Especialista en APH",
+    credentials: [
+      "Instructor AIDER con certificación ACES Internacional de primeros auxilios",
+      "Instructor STOP THE BLEED ACS ID 185038",
+      "Acreditada como Capacitador en área de Primeros Auxilios por la Autoridad Inherente a la Seguridad Privada",
+      "Instructor de RCP, uso del DEA y OVACE",
+      "Instructor del curso CONTROL DE HEMORRAGIAS ID 185038",
+      "Operador de Trauma",
+      "Primeros auxilio en Rescate Minero y Difícil Acceso",
+      "Primeros Auxilio en Lugares Remotos",
+      "Relator de Primeros Auxilios en Seguridad Privada",
+    ],
+    image: "/instructor3.jpg",
+  },
 ];
 
 export default function Companies() {
@@ -54,7 +71,7 @@ export default function Companies() {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
     if (cardsRef.current.length === 0) return;
 
     const ctx = gsap.context(() => {
@@ -71,10 +88,10 @@ export default function Companies() {
           y: 0,
           scale: 1,
           duration: 1,
-          ease: 'elastic.out(1, 0.6)',
+          ease: "elastic.out(1, 0.6)",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%',
+            start: "top 80%",
           },
         }
       );
@@ -96,10 +113,10 @@ export default function Companies() {
             scale: 1,
             duration: 1.2,
             delay: index * 0.3,
-            ease: 'power3.out',
+            ease: "power3.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: 'top 70%',
+              start: "top 70%",
             },
           }
         );
@@ -153,18 +170,19 @@ export default function Companies() {
             Nuestros Instructores
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Profesionales certificados con amplia experiencia en capacitación y atención de emergencias
+            Profesionales certificados con amplia experiencia en capacitación y
+            atención de emergencias
           </p>
         </div>
 
         {/* Instructors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 max-w-7xl mx-auto">
           {instructors.map((instructor, index) => (
             <div
               key={instructor.id}
               ref={addToRefs}
               className="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 transition-shadow duration-300 hover:shadow-xl"
-              style={{ perspective: '1000px' }}
+              style={{ perspective: "1000px" }}
             >
               <div className="p-8">
                 {/* Circular Image */}
@@ -215,7 +233,9 @@ export default function Companies() {
                             />
                           </svg>
                         </div>
-                        <span className="text-sm leading-relaxed">{credential}</span>
+                        <span className="text-sm leading-relaxed">
+                          {credential}
+                        </span>
                       </li>
                     ))}
                   </ul>
